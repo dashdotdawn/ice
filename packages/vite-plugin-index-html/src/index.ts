@@ -188,10 +188,8 @@ export const removeHtmlEntryScript = (rootDir: string, html: string, entry: stri
   if (matchs) {
     matchs.forEach((matchStr) => {
       const [, src] = matchStr.match(scriptLooseRegex);
-      // change `./src/index.js` to `src/index.js`
-      const normalizedSrc = normalize(src);
 
-      if (_entry.includes(normalizedSrc)) {
+      if (_entry.includes(src)) {
         _html = _html.replace(matchStr, commentScript(matchStr));
         console.warn(`
           vite-plugin-index-html: For the reason that entry was configured, ${matchStr} is deleted.
